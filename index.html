@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultra Shot</title>
+
+    <link rel="stylesheet" href="assets/css/fontawesome/css/all.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/index-style.css">
+    
+</head>
+<body>
+    
+    <!-- ===== NAV BAR START ===== -->
+    <div class="container">
+        <div class="navbar">
+            <div class="nav-logo">
+                <img src="assets/img/logo/Ultra Shots.png" alt="">
+            </div>
+            <div class="nav-items">               
+                    <input id="search-box" class="search-box" type="text" placeholder="Search">
+                    <a id="search" class="search-icon" href="#"><i  class="fas fa-search"></i></a>              
+                    <a class="notification" href="#"><i class="fas fa-bell"></i></a>
+                    <a href="#"><img class="profile-img" src="assets/img/img/untitled-1.jpg" alt=""></a>
+                    <a class="drop-down" href="#"><i class="fas fa-chevron-down"></i> </a>          
+            </div>
+        </div>
+    </div>
+    <!-- ====== NAV BAR END ====== -->
+    <hr>
+
+
+
+
+
+
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/jquery-3.5.1.slim.min.js"></script>
+    <script>
+        $('#search').click(function(){
+            $('.search-box').slideToggle();
+        });
+    </script>
+</body>
+</html>
