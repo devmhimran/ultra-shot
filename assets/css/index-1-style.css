@@ -1,37 +1,48 @@
-.card-product-grid{
-    /* box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+
+.card{
+
+    width: 320px;
+    height: 290px ;
+    border-radius: 5px;
     border: none;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1), 0 2px 8px 0 #a3a3a3;
+
+}
+.card:hover{
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1), 0 2px 8px 0 #e2c743;
     transition: 0.4s;
-    height: 370px !important;
-    text-align: center;
+
 }
-.cg-feature-products .rating-stars{
-    margin-bottom: 12px;
-    
+.card .card-image{
+	object-fit: cover;
+	overflow: hidden;
+
 }
-.cg-feature-products .rating-stars li i{
-    padding: 10px;
-}
-.card-product-grid:hover{
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1), 0 2px 8px 0 #5e898d;
-    transition: 0.4s;
-}
-.card-product-grid .img-wrap img{
+.card .card-image img{
+	width: 100%;
+    border-radius: /*15px 15px 0px*/ 5px;
     object-fit: cover;
-    transition:  all 1.2s ease;
 }
-.card-product-grid .img-wrap img:hover{
-    
-    transition:  all 1.2s ease;
+.card .card-detail img{
+	width: 50px;
+	height: 50px;
+	object-fit: cover;
+	border-radius: 50%;
+	margin: 10px 10px;
+	display: inline; 
+
 }
-.card-product-grid .price{
-    color: #ACA7A7;
-    font-family: 'Roboto';
-    font-weight: 400;
-    display: block;
-    margin-bottom: 10px;
+.card .react-num-cnt{
+	margin: 20px 10px;
+	display: inline;
+	float: right;
 }
-.cg-feature-products-all-btn{
-    margin: 50px auto 0px;
-    text-align: center;
+.card .user-name {
+
+	font-weight: 600; 
+	display: inline;
+		
 }
+.card .react-num {
+	display: inline;
+	}
