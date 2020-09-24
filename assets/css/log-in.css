@@ -59,9 +59,32 @@ main{
 }
 .card-body input[type="text"]:focus{
     background-color: #f5f5f5;
+    text-transform: lowercase;
 }
 .card-body input[type="password"]:focus{
     background-color:#f5f5f5;
+}
+.card-body .login-btn{
+    border: none;
+    outline: none;
+    background-color: #e2c743;
+    color: white;
+    padding: 8px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 2px 2px;
+    cursor: pointer;
+    font-family: 'Raleway';
+}
+.card-body .login-btn:hover{
+    background-color: #ceb431;
+}
+.card-body .login-btn1{
+    color: white;
+    outline: none;
+    border: none;
 }
 .card-body .forgot-pass a p{
     padding: 15px 0px;
