@@ -74,12 +74,14 @@ main{
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    font-weight: 500;
     margin: 2px 2px;
     cursor: pointer;
     font-family: 'Raleway';
 }
 .card-body .login-btn:hover{
     background-color: #ceb431;
+    transition: 0.4s;
 }
 .card-body .login-btn1{
     color: white;
