@@ -5,11 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel=" shortcut icon" type="image/x-icon" href="assets/img/logo/favicon-ultra-shots.png">
     <title>Ultra Shots</title>
-
     <link rel="stylesheet" href="assets/css/fontawesome/css/all.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/index-style.css">
+    <!-- <script>
+    $(document).ready(function(){
+      $("#search-box").click(function(){
+        $("#search").slideToggle();
+      });
+    });
+    </script> -->
     
 </head>
 <body>
@@ -243,10 +249,11 @@
 
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
     <script>
         $('#search').click(function(){
-            $('.search-box').slideToggle();
+            $('#search-box').toggle();
         });
     </script>
 </body>
