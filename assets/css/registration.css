@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 main{
-    height: 115vh;
+    height: 120vh;
     background: url(../img/images/log-in-bg.jpg);
     background-repeat: no-repeat;
 	background-attachment: scroll;
@@ -13,7 +13,7 @@ main{
 }
 .log-in{
     position: absolute;
-    top: 55%;
+    top: 58%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
@@ -47,6 +47,7 @@ main{
 }
 .card-body .form-group{
     border-bottom: 2px solid #e2c743;
+    margin-bottom: 10px !important;
 }
 .card-body input[type="text"],
 .card-body input[type="password"]{
@@ -64,6 +65,10 @@ main{
 }
 .card-body input[type="password"]:focus{
     background-color:#f5f5f5;
+}
+.card-body .invailed-msg{
+    font-size: 12px;
+    color: #cc3f46;
 }
 .card-body .login-btn{
     border: none;
