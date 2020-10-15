@@ -1,3 +1,53 @@
+<?php 
+    
+    include 'db/db.php';
+    include 'db/function.php';
+
+if (isset($_POST['log_in'])) {
+   $username = $_POST['username'];
+   $user_password = $_POST['user_password'];
+
+  if(empty($username)){
+    $username_valid = "<p class='invailed-msg'>Username/Email Required</p>";
+   }
+   if(empty($user_password)){
+    $pass_valid = "<p class='invailed-msg'>Password Required</p>";
+   }
+
+   if(empty($username)||empty($user_password)){
+    $valid =  "<p class='invailed-msg'>All fields are required<button style='color:red;' class='close' data-dissmiss='alert'>&times;</button></p>";
+
+   }else{
+
+    $sql_username = "SELECT * FROM users WHERE username ='$username'|| email ='$username'";
+    $data = $conn -> query($sql_username);
+    $f_data = $data -> fetch_assoc();
+    if( $data -> num_rows == 1) {
+        
+        if(password_verify($user_password, $f_data['password'] ) == false){
+
+            session_start();
+            $_SESSION['id'] = $f_data['id'];
+            $_SESSION['name'] = $f_data['name'];
+            $_SESSION['phone'] = $f_data['phone'];
+            $_SESSION['email'] = $f_data['email'];
+            $_SESSION['username'] = $f_data['username'];
+            $_SESSION['photo1'] = $f_data['photo1'];
+            $_SESSION['photo2'] = $f_data['photo2'];
+            header("location:profile.php");
+        }else{
+            $valid =  "<p class='invailed-msg'>Wrong Password<button style='color:red;' class='close' data-dissmiss='alert'>&times;</button></p>";
+        }
+
+    }else{
+        $valid =  "<p class='invailed-msg'>wrong username<button style='color:red;' class='close' data-dissmiss='alert'>&times;</button></p>";
+    }
+   
+
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,28 +70,51 @@
                     <img src="assets/img/logo/ultra-Shots-black.png" alt="">
                 </div>
                
-                    <form action="">
+                    <form action="<?php $_SERVER['PHP_SELF']?>" method = "POST">
+
                         <div class="card mx-auto mt-5">
-                       
+                        
                             <div class="card-body">
                                 <div class="log-in-name">
                                     <h2>Login</h2>
                                 </div>
+                                <div class="container " style="z-index: 2">
+                            <!-- <?php
+
+                    if (isset($valid)) {
+                        echo $valid;
+                    }
+                    ?> -->
+                        </div>
                                 <div class="user-input">
                                     <div class="form-group">
                                         <!-- <label for="">Username/Email</label> -->
-                                    <input class="" type="text" name="" id="" placeholder="username">
+                                    <input class="" type="text" placeholder="username" name="username">
                                     </div>
-                                    <p class="invailed-msg">Invailed Username</p>
+                                    <?php 
+
+                                    if (isset($username_valid)) {
+                                    echo $username_valid;
+                                     }
+
+                                    ?>
+                                   <!--  <p class="invailed-msg">Invailed Username</p> -->
                                 </div>
                                 <div class="user-input">
                                     <div class="form-group">
                                         <!-- <label for="">Password</label> -->
-                                        <input  class="" type="password" name="" id="" placeholder="password">
+                                        <input  class="" type="password" placeholder="password" name="user_password">
                                     </div>
-                                    <p class="invailed-msg">Invailed Password</p>
+                                    <?php 
+
+                    if (isset($pass_valid)) {
+                        echo $pass_valid;
+                    }
+
+                ?>
+                                    <!-- <p class="invailed-msg">Invailed Password</p> -->
                                 </div>
-                                <input  class="login-btn login-btn1 btn-block" type="submit" value="Sign in">
+                                <input  class="login-btn login-btn1 btn-block" type="submit" value="Sign in" name="log_in">
                                 <!-- <button>Log In</button> -->
                                 <div class="forgot-pass">
                                     <a href="#"><p class="">Forgot Password ?</p></a>

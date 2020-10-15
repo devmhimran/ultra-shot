@@ -11,13 +11,13 @@ main{
 	background-size: cover;
     background-position:  center center;
 }
-.log-in{
+.reg{
     position: absolute;
     top: 58%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
-.logo img{
+.reg img{
     width: 220px;
     margin: 0px auto 0px;
     display: flex;
@@ -88,4 +88,12 @@ main{
 .card-body .login-btn:hover{
     background-color: #ceb431;
     transition: 0.4s;
+}
+.reg .card-body .user_bio{
+    border: none !important;
+    outline: none !important;
+}
+.reg .card-body .user_bio:focus{
+    border: none !important;
+    outline: none !important;
 }

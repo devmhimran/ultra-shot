@@ -1,3 +1,112 @@
+<?php
+
+    include 'db/db.php';
+    include 'db/function.php';
+    $valid[] ='';
+    if(isset($_POST['submit'])){
+
+    $user_name             = $_POST['user_name'];
+    $user_username         = $_POST['user_username'];
+    $user_email             = $_POST['user_email'];
+    $user_address          = $_POST['user_address'];
+    $user_bio              = $_POST['user_bio'];
+    $user_password         = $_POST['user_password'];
+    $user_confirm_password = $_POST['user_confirm_password'];
+    // $user_photo            = $_POST['user_photo'];
+    $password_hash         = password_hash($user_password, PASSWORD_DEFAULT);
+                
+     // username check
+    // -------------------------------
+     $unique_username_check =  unique_check($conn,'user_username', 'user_data', $user_username);
+     // email check
+    // -------------------------------
+      $unique_email_check =  unique_check($conn,'user_email', 'user_data', $user_email);
+
+     // Confirm Password
+    // -------------------------------
+      if($user_password  == $user_confirm_password){
+        $password_check = true;
+      }else{
+        $password_check =  false;
+      }
+
+      if(empty($user_name)){
+        $valid_name =  "<p class='invailed-msg'>Enter Your Name</p>";
+      }
+      if(empty($user_username)){
+        $valid_username =  "<p class='invailed-msg'>Enter Username</p>";
+      }
+      if(empty($user_email)){
+        $valid_email =  "<p class='invailed-msg'>Enter Your Email</p>";
+      }
+      if(empty($user_address)){
+        $valid_address = "<p class='invailed-msg'>Enter Your Address</p>";
+      }
+      if(empty($user_bio)){
+          $valid_bio = "<p class='invailed-msg'>Enter Your Bio</p>";
+      }
+      if(empty($user_password)){
+        $valid_password = "<p class='invailed-msg'>Enter Password</p>";
+      }
+      if(empty($user_confirm_password)){
+        $valid_confirm_password = "<p class='invailed-msg'>Enter Password</p>";
+      }
+
+      if ($unique_username_check == false ) {   
+                $valid_username =  "<p class='invailed-msg'>Username already exists</p>";
+                
+                
+            }
+            
+            if( $unique_email_check == false){
+                $valid_email =  "<p class='invailed-msg'>Email already exists</p>";
+            
+            }
+            if( $password_check == false){
+                $valid_pass =  "<p class='invailed-msg'>Password doesn't match</p>";
+            }
+
+    
+
+     // form-validation
+     // -------------------------------
+     if(empty($name )  || empty($phone) || empty($email) || empty($username) || empty($password_hash)){
+         $valid[] =  "<p class='alert alert-danger'>All fields are required<button class='close' data-dissmiss='alert'>&times;</button></p>";
+         }elseif ($unique_username_check == false) {
+                $valid[] =  "<p class='alert alert-warning'>Couldn't Sign In !<button class='close' data-dissmiss='alert'>&times;</button></p>";
+                $valid_username =  "<p>Username already exits</p>";
+         }elseif ($unique_email_check == false) {
+            $valid[] =  "<p class='alert alert-warning'>Couldn't Sign In !<button class='close' data-dissmiss='alert'>&times;</button></p>";
+            $valid_email =  "<p>Email already exits</p>";
+         }elseif ($password_check == false) {
+            $valid[] =  "<p class='alert alert-warning'>Couldn't Sign In !<button class='close' data-dissmiss='alert'>&times;</button></p>";
+            $valid_pass =  "<p>Password doesn't match</p>";
+            }else{
+
+        
+            // Photo validation + Upload DataBase
+           // -----------------------------------
+            $data = photo_upload($_FILES['user_photo'],'assets/img/user_img/');
+            $photo_data= $data['file_name'];
+
+            if ( $data['status'] == 'yes' ) {
+
+                 $sql = " INSERT INTO users (name,phone,email,username,password,photo1) values ('$name','$phone','$email','$username','$password_hash','$photo_data')";
+                 $conn -> query($sql);
+                set_msg('Successfully Sign Up');
+
+
+                header("location: reg-form.php");
+            }
+            else{
+                $valid[] =  "<p class='alert alert-warning'>Invaild file format<button class='close' data-dissmiss='alert'>&times;</button></p>";
+            }                       
+     }
+
+} 
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,12 +124,12 @@
 <body>
     <main>
         <div class="container">
-            <div class="log-in">
+            <div class="reg">
                 <div class="logo">
                     <img src="assets/img/logo/ultra-Shots-black.png" alt="">
                 </div>
                
-                    <form action="">
+                    <form action="<?php $_SERVER['PHP_SELF']?>" method = "POST" enctype='multipart/form-data'>
                         <div class="card mx-auto mt-5">
                        
                             <div class="card-body">
@@ -31,57 +140,103 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <!-- <label for="">Username/Email</label> -->
-                                            <input class="" type="text" name="" id="" placeholder="Your Name">
+                                            <input class="" type="text" name="user_name" id="" placeholder="Your Name">
+                                            
                                         </div>
-                                        <p class="invailed-msg">Invailed Username</p>
+                                        <small>
+                                        <?php 
+                                            if (isset($valid_name)) {
+                                                echo $valid_name;
+                                                }
+                                            ?> 
+                                        </small>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <!-- <label for="">Username/Email</label> -->
-                                            <input class="" type="text" name="" id="" placeholder="Your Username">
+                                            <input class="" type="text" name="user_username" id="" placeholder="Your Username">
                                         </div>
-                                        <p class="invailed-msg">Invailed Username</p>
+                                            <small><?php 
+                                            if (isset($valid_username)) {
+                                                echo $valid_username;
+                                                }
+                                            ?> </small>   
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <!-- <label for="">Username/Email</label> -->
-                                            <input class="" type="text" name="" id="" placeholder="Your Email">
+                                            <input class="" type="text" name="user_email" id="" placeholder="Your Email">
                                         </div>
-                                        <p class="invailed-msg">Invailed Username</p>
+                                            <?php 
+                                            if (isset($valid_email)) {
+                                                echo $valid_email;
+                                                }
+                                            ?>    
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <!-- <label for="">Username/Email</label> -->
-                                            <input class="" type="text" name="" id="" placeholder="Your Address">
+                                            <input class="" type="text" name="user_address" id="" placeholder="Your Address">
                                         </div>
-                                        <p class="invailed-msg">Invailed Username</p>
+                                        <small>
+                                        <?php 
+                                            if (isset($valid_address)) {
+                                                echo $valid_address;
+                                                }
+                                            ?> 
+                                        </small>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Bio"></textarea>
+                                            <textarea class="form-control user_bio" name="user_bio" id="exampleFormControlTextarea1" rows="3" placeholder="Bio"></textarea>
                                         </div>
-                                        <p class="invailed-msg">Invailed Username</p>
+                                        <small>
+                                        <?php 
+                                            if (isset($valid_bio)) {
+                                                echo $valid_bio;
+                                                }
+                                            ?> 
+                                        </small>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <!-- <label for="">Password</label> -->
-                                            <input  class="" type="password" name="" id="" placeholder="Password">
+                                            <input  class="" type="password" name="user_password" id="" placeholder="Password">
                                         </div>
-                                        <p class="invailed-msg">Invailed Username</p>
+                                        <small>
+                                            <?php 
+                                                if (isset($valid_pass)) {
+                                                echo $valid_pass;
+                                                }
+                                            ?> 
+                                        </small>
+                                        <small>
+                                            <?php 
+                                                if (isset($valid_password)) {
+                                                echo $valid_password;
+                                                }
+                                            ?>   
+                                        </small>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <!-- <label for="">Password</label> -->
-                                            <input  class="" type="password" name="" id="" placeholder="Re-type Password">
+                                            <input  class="" type="password" name="user_confirm_password" id="" placeholder="Re-type Password">
                                         </div>
-                                        <p class="invailed-msg">Invailed Username</p>
+                                        <small>
+                                            <?php 
+                                                if (isset($valid_confirm_password)) {
+                                                echo $valid_confirm_password;
+                                                }
+                                            ?>   
+                                        </small>
                                     </div>
                                 </div>
                                 <div class="profile-photo mt-2 mb-3 py-1">
-                                    <input type="file">
+                                    <input class="form-control" type="file" name="user_photo">
                                 </div>
                                 
-                                <input  class="login-btn login-btn1" type="submit" value="Sign in">
+                                <input  class="login-btn login-btn1" type="submit" value="Sign in" name="submit">
                                 <!-- <button>Log In</button> -->
                             </div>
                             
