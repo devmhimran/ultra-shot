@@ -30,7 +30,8 @@ main{
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1), 0 2px 8px 0 #a3a3a3;
     /* background-color: rgba(0, 0, 0, 0.2); */
     width: 650px;
-    height: 625px;
+    /* height: 625px; */
+    height: auto;
     border-radius: 0 ;
 
 }
@@ -47,7 +48,7 @@ main{
 }
 .card-body .form-group{
     border-bottom: 2px solid #e2c743;
-    margin-bottom: 10px !important;
+    margin-bottom: 15px !important;
 }
 .card-body input[type="text"],
 .card-body input[type="password"]{

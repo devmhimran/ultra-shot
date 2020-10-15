@@ -70,7 +70,7 @@
 
      // form-validation
      // -------------------------------
-     if(empty($name )  || empty($phone) || empty($email) || empty($username) || empty($password_hash)){
+     if(empty($user_name )  || empty( $user_username) || empty($user_email) || empty($user_address) || empty($user_bio) || empty($password_hash)){
          $valid[] =  "<p class='alert alert-danger'>All fields are required<button class='close' data-dissmiss='alert'>&times;</button></p>";
          }elseif ($unique_username_check == false) {
                 $valid[] =  "<p class='alert alert-warning'>Couldn't Sign In !<button class='close' data-dissmiss='alert'>&times;</button></p>";
@@ -136,11 +136,21 @@
                                 <div class="log-in-name">
                                     <h2>Registration</h2>
                                 </div>
+                                <?php 
+
+						if ( count($valid)>0) {
+							foreach ($valid as $v) {
+								echo $v;
+							}
+						}
+					
+						get_msg();
+					?>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <!-- <label for="">Username/Email</label> -->
-                                            <input class="" type="text" name="user_name" id="" placeholder="Your Name">
+                                            <input class="" type="text" name="user_name" id="" placeholder="Your Name" value= "<?php old('user_name') ?>">
                                             
                                         </div>
                                         <small>
@@ -154,7 +164,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <!-- <label for="">Username/Email</label> -->
-                                            <input class="" type="text" name="user_username" id="" placeholder="Your Username">
+                                            <input class="" type="text" name="user_username" id="" placeholder="Your Username" value= "<?php old('user_username') ?>">
                                         </div>
                                             <small><?php 
                                             if (isset($valid_username)) {
@@ -165,7 +175,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <!-- <label for="">Username/Email</label> -->
-                                            <input class="" type="text" name="user_email" id="" placeholder="Your Email">
+                                            <input class="" type="text" name="user_email" id="" placeholder="Your Email" value= "<?php old('user_email') ?>">
                                         </div>
                                             <?php 
                                             if (isset($valid_email)) {
@@ -176,7 +186,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <!-- <label for="">Username/Email</label> -->
-                                            <input class="" type="text" name="user_address" id="" placeholder="Your Address">
+                                            <input class="" type="text" name="user_address" id="" placeholder="Your Address" value= "<?php old('user_address') ?>">
                                         </div>
                                         <small>
                                         <?php 
@@ -188,7 +198,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <textarea class="form-control user_bio" name="user_bio" id="exampleFormControlTextarea1" rows="3" placeholder="Bio"></textarea>
+                                            <textarea class="form-control user_bio" name="user_bio" id="exampleFormControlTextarea1" rows="3" placeholder="Bio" value= "<?php old('user_bio') ?>"></textarea>
                                         </div>
                                         <small>
                                         <?php 
