@@ -19,7 +19,7 @@ if (isset($_POST['log_in'])) {
 
    }else{
 
-    $sql_username = "SELECT * FROM users WHERE username ='$username'|| email ='$username'";
+    $sql_username = "SELECT * FROM user_data WHERE user_username ='$username'|| user_email ='$username'";
     $data = $conn -> query($sql_username);
     $f_data = $data -> fetch_assoc();
     if( $data -> num_rows == 1) {
@@ -28,12 +28,12 @@ if (isset($_POST['log_in'])) {
 
             session_start();
             $_SESSION['id'] = $f_data['id'];
-            $_SESSION['name'] = $f_data['name'];
-            $_SESSION['phone'] = $f_data['phone'];
-            $_SESSION['email'] = $f_data['email'];
-            $_SESSION['username'] = $f_data['username'];
-            $_SESSION['photo1'] = $f_data['photo1'];
-            $_SESSION['photo2'] = $f_data['photo2'];
+            $_SESSION['user1_name'] = $f_data['user1_name'];
+            $_SESSION['user_username'] = $f_data['user_username'];
+            $_SESSION['user_email'] = $f_data['email'];
+            $_SESSION['user_address'] = $f_data['user_address'];
+            $_SESSION['user_bio'] = $f_data['user_bio'];
+            $_SESSION['user_photo'] = $f_data['user_photo'];
             header("location:profile.php");
         }else{
             $valid =  "<p class='invailed-msg'>Wrong Password<button style='color:red;' class='close' data-dissmiss='alert'>&times;</button></p>";

@@ -1,21 +1,47 @@
+<?php
+  
+  include 'db/db.php';
+  include 'db/function.php';
+
+  session_start();
+  if(!isset($_SESSION['id']) AND !isset($_SESSION['user1_name']) AND !isset($_SESSION['user_username'])){
+		header("location:log-in.php");
+	  }
+
+  if(isset($_GET['logout']) AND $_GET['logout'] == 'user-logout'){
+    session_destroy();
+    setcookie('user_re_log','',time() - (60*60*24*365));
+    header("location:log-in.php");
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel=" shortcut icon" type="image/x-icon" href="assets/img/logo/favicon-ultra-shots.png">
-    <title>Ultra Shots</title>
+    <title><?php echo $_SESSION['user1_name'] ?></title>
     <link rel="stylesheet" href="assets/css/fontawesome/css/all.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/profile.css">
-    <!-- <script>
+    <script>
     $(document).ready(function(){
       $("#search-box").click(function(){
         $("#search").slideToggle();
       });
+
+      
+      
     });
-    </script> -->
+    $(document).ready(function(){
+        $("a#dropdown").click(function(){
+        $("#dropdown-content").slideToggle();
+      })
+    });
+    </script>
     
 </head>
 <body>
@@ -31,7 +57,16 @@
                     <a id="search" class="search-icon" href="#"><i  class="fas fa-search"></i></a>              
                     <a class="notification" href="#"><i class="fas fa-bell"></i></a>
                     <a href="#"><img class="profile-img" src="assets/img/user_img/untitled-1.jpg"></a>
-                    <a class="drop-down" href="#"><i class="fas fa-chevron-down"></i> </a>          
+                    <a class="dropdown" id="dropdown" href="#"><i class="fas fa-chevron-down"></i> </a>
+                    <div class="dropdown-content" id="dropdown-content">
+                        <div class="card">
+                            <div class="card-body">
+                            <p><a href="#">Setting</a></p>
+                            <hr>
+                            <p><a href="#">Logout</a></p>
+                            </div>
+                        </div>
+                    </div>         
             </div>
         </div>
     </div>
@@ -49,10 +84,10 @@
                         </div>
                         <div class="col-md-8">
                             <div class="user_name">
-                                <h4>Mahmud Hasan Imran</h4>
+                                <h4><?php echo $_SESSION['user1_name']; ?></h4>
                             </div>
                             <div class="user_bio">
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure, quidem!</p>
+                                <p><?php echo $_SESSION['user_bio']; ?></p>
                             </div>
                         </div>
                     </div>

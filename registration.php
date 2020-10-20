@@ -5,13 +5,13 @@
     $valid[] ='';
     if(isset($_POST['submit'])){
 
-    $user_name             = $_POST['user_name'];
-    $user_username         = $_POST['user_username'];
-    $user_email             = $_POST['user_email'];
-    $user_address          = $_POST['user_address'];
-    $user_bio              = $_POST['user_bio'];
-    $user_password         = $_POST['user_password'];
-    $user_confirm_password = $_POST['user_confirm_password'];
+$user_name             = $_POST['user_name'];
+$user_username         = $_POST['user_username'];
+$user_email             = $_POST['user_email'];
+$user_address          = $_POST['user_address'];
+$user_bio              = $_POST['user_bio'];
+$user_password         = $_POST['user_password'];
+$user_confirm_password = $_POST['user_confirm_password'];
     // $user_photo            = $_POST['user_photo'];
     $password_hash         = password_hash($user_password, PASSWORD_DEFAULT);
                 
@@ -74,7 +74,7 @@
          $valid[] =  "<p class='alert alert-danger'>All fields are required<button class='close' data-dissmiss='alert'>&times;</button></p>";
          }elseif ($unique_username_check == false) {
                 $valid[] =  "<p class='alert alert-warning'>Couldn't Sign In !<button class='close' data-dissmiss='alert'>&times;</button></p>";
-                $valid_username =  "<p>Username already exits</p>";
+                // $valid_username =  "<p>Username already exits</p>";
          }elseif ($unique_email_check == false) {
             $valid[] =  "<p class='alert alert-warning'>Couldn't Sign In !<button class='close' data-dissmiss='alert'>&times;</button></p>";
             $valid_email =  "<p>Email already exits</p>";
@@ -87,16 +87,16 @@
             // Photo validation + Upload DataBase
            // -----------------------------------
             $data = photo_upload($_FILES['user_photo'],'assets/img/user_img/');
-            $photo_data= $data['file_name'];
+            $photo_data = $data['file_name'];
 
             if ( $data['status'] == 'yes' ) {
 
-                 $sql = " INSERT INTO users (name,phone,email,username,password,photo1) values ('$name','$phone','$email','$username','$password_hash','$photo_data')";
+                 $sql = " INSERT INTO user_data ( user1_name ,user_username,user_email,user_address,user_bio,user_password,user_photo) values ('$user_name ','$user_username','$user_email','$user_address','$user_bio','$password_hash','$photo_data')";
                  $conn -> query($sql);
                 set_msg('Successfully Sign Up');
 
 
-                header("location: reg-form.php");
+                header("location: registration.php");
             }
             else{
                 $valid[] =  "<p class='alert alert-warning'>Invaild file format<button class='close' data-dissmiss='alert'>&times;</button></p>";
