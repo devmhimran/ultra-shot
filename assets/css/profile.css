@@ -40,13 +40,24 @@
     /* text-shadow: 1px 1px 3px#b5b5b5; */
     transition: 0.4s;
 }
-.dropdown i{
+.logout i{
     padding: 0px 10px;
     color: #e2c743;
     font-size: 20px;
     text-decoration: none;
 }
-.dropdown i:hover{
+.logout i:hover{
+    color: #c7ab20;
+    /* text-shadow: 1px 1px 3px#b5b5b5; */
+    transition: 0.4s;
+}
+.setting i{
+    padding: 0px 10px;
+    color: #e2c743;
+    font-size: 20px;
+    text-decoration: none;
+}
+.setting i:hover{
     color: #c7ab20;
     /* text-shadow: 1px 1px 3px#b5b5b5; */
     transition: 0.4s;

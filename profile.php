@@ -48,15 +48,15 @@
     <div class="container">
         <div class="navbar">
             <div class="nav-logo">
-                <a href="index.html"><img src="assets/img/logo/ultra-Shots-black.png" alt=""></a>
+                <a href="index.php"><img src="assets/img/logo/ultra-Shots-black.png" alt=""></a>
             </div>
             <div class="nav-items">               
                     <input id="search-box" class="search-box" type="text" placeholder="Search">
                     <a id="search" class="search-icon" href="#"><i  class="fas fa-search"></i></a>              
                     <a class="notification" href="#"><i class="fas fa-bell"></i></a>
-                    <a href="#"><img class="profile-img" src="assets/img/user_img/<?php echo $_SESSION['user_photo'];?>"></a>
-                    <a class="dropdown" id="dropdown" href="?logout=user-logout"><i class="fas fa-sign-out-alt"></i></a>
-                    <a class="dropdown" href="#"><i class="fas fa-cog"></i></a>        
+                    <a href="profile.php"><img class="profile-img" src="assets/img/user_img/<?php echo $_SESSION['user_photo'];?>"></a>
+                    <a class="logout" id="dropdown" href="?logout=user-logout"><i class="fas fa-sign-out-alt"></i></a>
+                    <a class="setting" href="#"><i class="fas fa-cog"></i></a>        
             </div>
         </div>
     </div>

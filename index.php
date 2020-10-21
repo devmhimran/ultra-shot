@@ -1,4 +1,16 @@
+<?php
+    include 'db/db.php';
+    include 'db/function.php';
 
+
+    session_start();
+    if(isset($_GET['logout']) AND $_GET['logout'] == 'user-logout'){
+    session_destroy();
+    setcookie('user_re_log','',time() - (60*60*24*365));
+    header("location:log-in.php");
+  }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,14 +37,15 @@
     <div class="container">
         <div class="navbar">
             <div class="nav-logo">
-                <img src="assets/img/logo/ultra-Shots-black.png" alt="">
+                <a href="index.php"><img src="assets/img/logo/ultra-Shots-black.png" alt=""></a>
             </div>
             <div class="nav-items">               
                     <input id="search-box" class="search-box" type="text" placeholder="Search">
                     <a id="search" class="search-icon" href="#"><i  class="fas fa-search"></i></a>              
                     <a class="notification" href="#"><i class="fas fa-bell"></i></a>
-                    <a href="#"><img class="profile-img" src="assets/img/user_img/untitled-1.jpg"></a>
-                    <a class="drop-down" href="#"><i class="fas fa-chevron-down"></i> </a>          
+                    <a href="profile.php"><img class="profile-img" src="assets/img/user_img/<?php echo $_SESSION['user_photo'];?>"></a>
+                    <a class="logout" id="dropdown" href="?logout=user-logout"><i class="fas fa-sign-out-alt"></i></a>
+                    <a class="setting" href="#"><i class="fas fa-cog"></i></a>        
             </div>
         </div>
     </div>
