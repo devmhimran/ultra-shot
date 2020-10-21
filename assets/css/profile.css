@@ -69,7 +69,7 @@
     left: 90%;
     width: 150px;
     height: auto;
-    display: none;
+    /* display: none; */
 }
 .dropdown-content .card:hover{
     color: #fff;
@@ -101,10 +101,10 @@ main{
 .user_post{
     margin-top: 50px;
 }
-.card{
+ .card{
 
     width: 320px;
-    height: 290px ;
+    height: auto;
     border-radius: 5px;
 	border: none;
 	margin: 10px 10px;
@@ -123,7 +123,7 @@ main{
 }
 .card .card-image img{
 	width: 100%;
-    border-radius: /*15px 15px 0px*/ 5px;
+    border-radius:  5px;
     object-fit: cover;
 }
 .card .card-detail img{
@@ -160,4 +160,33 @@ main{
 }
 .card .react-num {
 	display: inline;
+}
+
+
+
+.upload-btn-wrapper {
+  position: fixed;
+  float: right;
+  top: 80%;
+  left: 93%;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn {
+  border: 2px solid black;
+  color: black;
+  background-color: white;
+  padding: 8px 10px;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
 }

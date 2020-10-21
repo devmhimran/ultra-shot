@@ -33,14 +33,12 @@
         $("#search").slideToggle();
       });
 
-      
+      $(".dropdown").click(function(){
+        $(".dropdown-content").hide();
+      });
       
     });
-    $(document).ready(function(){
-        $("a#dropdown").click(function(){
-        $("#dropdown-content").slideToggle();
-      })
-    });
+ 
     </script>
     
 </head>
@@ -56,17 +54,9 @@
                     <input id="search-box" class="search-box" type="text" placeholder="Search">
                     <a id="search" class="search-icon" href="#"><i  class="fas fa-search"></i></a>              
                     <a class="notification" href="#"><i class="fas fa-bell"></i></a>
-                    <a href="#"><img class="profile-img" src="assets/img/user_img/untitled-1.jpg"></a>
-                    <a class="dropdown" id="dropdown" href="#"><i class="fas fa-chevron-down"></i> </a>
-                    <div class="dropdown-content" id="dropdown-content">
-                        <div class="card">
-                            <div class="card-body">
-                            <p><a href="#">Setting</a></p>
-                            <hr>
-                            <p><a href="#">Logout</a></p>
-                            </div>
-                        </div>
-                    </div>         
+                    <a href="#"><img class="profile-img" src="assets/img/user_img/<?php echo $_SESSION['user_photo'];?>"></a>
+                    <a class="dropdown" id="dropdown" href="?logout=user-logout"><i class="fas fa-sign-out-alt"></i></a>
+                    <a class="dropdown" href="#"><i class="fas fa-cog"></i></a>        
             </div>
         </div>
     </div>
@@ -79,7 +69,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="text-center user_image">
-                                <img src="assets/img/user_img/untitled-1.jpg" class="" alt="...">
+                                <img src="assets/img/user_img/<?php echo $_SESSION['user_photo']; ?>" class="" alt="...">
                               </div>
                         </div>
                         <div class="col-md-8">
@@ -96,133 +86,67 @@
             <hr>
             <div class="user_post">
                 <div class="row">
-                    <div class="col-md-4">
+                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-image">
                                 <img src="assets/img/pics/1.jpg">
                             </div>
-                            <div class="card-detail">
-                                <img src="assets/img/user_img/untitled-1.jpg">
-                                <a href="#"><p class="user-name">Mahmud Hasan</p></a>
-                                <div class="react-num-cnt float-right">
-                                    <a class="react-icon" href="#"><i class="fas fa-heart"></i></a>
-                                    <p class="react-num text-muted ">20</p>
-                                </div>
-                           
-        
-                            </div>
                         </div>
                     </div>
-        <!-- ===== 1st card ===== -->
-        
-        
-                    <div class="col-md-4">
+
+                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-image">
                                 <img src="assets/img/pics/1.jpg">
                             </div>
-                            <div class="card-detail">
-                                <img src="assets/img/user_img/untitled-1.jpg">
-                                <a href="#"><p class="user-name">Mahmud Hasan</p></a>
-                                <div class="react-num-cnt float-right">
-                                    <a class="react-icon" href="#"><i class="fas fa-heart"></i></a>
-                                    <p class="react-num text-muted ">20</p>
-                                </div>
-                           
-        
-                            </div>
                         </div>
                     </div>
-        <!-- ===== 2nd card ===== -->
-        
-                    <div class="col-md-4">
+
+                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-image">
                                 <img src="assets/img/pics/1.jpg">
                             </div>
-                            <div class="card-detail">
-                                <img src="assets/img/user_img/untitled-1.jpg">
-                                <a href="#"><p class="user-name">Mahmud Hasan</p></a>
-                                <div class="react-num-cnt float-right">
-                                    <a class="react-icon" href="#"><i class="fas fa-heart"></i></a>
-                                    <p class="react-num text-muted ">20</p>
-                                </div>
-                           
-        
+                        </div>
+                    </div>
+
+                     <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="assets/img/pics/1.jpg">
                             </div>
                         </div>
                     </div>
-        <!-- ===== 3rd card ===== -->
-                           
-        
-                </div>
-                <!-- ===== 2nd row ===== -->
-                
-        <div class="user_post">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="assets/img/pics/1.jpg">
-                        </div>
-                        <div class="card-detail">
-                            <img src="assets/img/user_img/untitled-1.jpg">
-                            <a href="#"><p class="user-name">Mahmud Hasan</p></a>
-                            <div class="react-num-cnt float-right">
-                                <a class="react-icon" href="#"><i class="fas fa-heart"></i></a>
-                                <p class="react-num text-muted ">20</p>
+
+                     <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="assets/img/pics/1.jpg">
                             </div>
-                       
-    
                         </div>
                     </div>
-                </div>
-    <!-- ===== 1st card ===== -->
-    
-    
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="assets/img/pics/1.jpg">
-                        </div>
-                        <div class="card-detail">
-                            <img src="assets/img/user_img/untitled-1.jpg">
-                            <a href="#"><p class="user-name">Mahmud Hasan</p></a>
-                            <div class="react-num-cnt float-right">
-                                <a class="react-icon" href="#"><i class="fas fa-heart"></i></a>
-                                <p class="react-num text-muted ">20</p>
+
+                     <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="assets/img/pics/1.jpg">
                             </div>
-                       
-    
                         </div>
                     </div>
+
+                     
                 </div>
-    <!-- ===== 2nd card ===== -->
-    
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="assets/img/pics/1.jpg">
-                        </div>
-                        <div class="card-detail">
-                            <img src="assets/img/user_img/untitled-1.jpg">
-                            <a href="#"><p class="user-name">Mahmud Hasan</p></a>
-                            <div class="react-num-cnt float-right">
-                                <a class="react-icon" href="#"><i class="fas fa-heart"></i></a>
-                                <p class="react-num text-muted ">20</p>
-                            </div>
-                       
-    
-                        </div>
-                    </div>
-                </div>
-    <!-- ===== 3rd card ===== -->
                        
     
             </div>
-                </div>
-        </div>
-    </main>
+
+             <div class="upload-btn-wrapper">
+  <button class="btn"><i class="fas fa-cloud-upload-alt"></i></button>
+  <input type="file" name="myfile" >
+</div>
+    </div>
+   
+</main>
 
 
     <!-- ========================= FOOTER START ========================= -->
