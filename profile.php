@@ -16,6 +16,38 @@
 
 ?>
 
+
+<?php
+
+
+
+
+if(isset($_POST['upload_photo'])){
+    $user_id = $_SESSION['id'];
+    // Photo validation + Upload DataBase
+           // -----------------------------------
+           $data = photo_upload($_FILES['user_post'],'assets/img/user_post/');
+           $photo_data = $data['file_name'];
+
+           if ( $data['status'] == 'yes' ) {
+
+                $sql = " INSERT INTO posts ( user_id , post_photo ) values ('$user_id ', '$photo_data')";
+                $conn -> query($sql);
+            //    set_msg('Successfully Sign Up');
+
+
+               header("location: profile.php");
+           }
+           else{
+               $valid[] =  "<p class='alert alert-warning'>Invaild file format<button class='close' data-dissmiss='alert'>&times;</button></p>";
+           } 
+}
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +57,9 @@
     <title><?php echo $_SESSION['user1_name'] ?></title>
     <link rel="stylesheet" href="assets/css/fontawesome/css/all.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/profile.css">
     <script>
@@ -84,67 +119,96 @@
                 </div>
             </div>
             <hr>
+
+            <?php  
+            
+
+            $user_id = $_SESSION['id'];
+            $sql_post = "SELECT * FROM user_data WHERE user_id ='$user_id'";
+            $data = $conn -> query($sql_post);
+            // $f_data = $data -> fetch_assoc()
+                // $f_data = $data -> fetch_assoc();
+                
+            
+            
+            
+            ?>
             <div class="user_post">
                 <div class="row">
-                     <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="assets/img/pics/1.jpg">
-                            </div>
-                        </div>
-                    </div>
+                    <?php 
+                     
+                     
+                    
+                     while($f_data = $data -> fetch_assoc()):
+                     
+                    ?>
 
                      <div class="col-md-4">
                         <div class="card">
                             <div class="card-image">
-                                <img src="assets/img/pics/1.jpg">
+                                <img src="assets/img/user_post/<?php echo $f_data['post_photo'];  ?>">
                             </div>
                         </div>
                     </div>
-
-                     <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="assets/img/pics/1.jpg">
-                            </div>
-                        </div>
-                    </div>
-
-                     <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="assets/img/pics/1.jpg">
-                            </div>
-                        </div>
-                    </div>
-
-                     <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="assets/img/pics/1.jpg">
-                            </div>
-                        </div>
-                    </div>
-
-                     <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="assets/img/pics/1.jpg">
-                            </div>
-                        </div>
-                    </div>
+                     <?php endwhile; ?>
+                     
 
                      
                 </div>
                        
     
             </div>
+            
 
-             <div class="upload-btn-wrapper">
-  <button class="btn"><i class="fas fa-cloud-upload-alt"></i></button>
-  <input type="file" name="myfile" >
-</div>
+
+
+
+
+            <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="<?php $_SERVER['PHP_SELF']?>" method = "POST" enctype='multipart/form-data'>
+      <div class="modal-body">
+      <input type="file" name="user_post" >
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <input class="btn btn-outline-info" type="submit" name="upload_photo">
+      </div>
+      </form>
     </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+             <div class="upload-btn-wrapper" type="button" data-toggle="modal" data-target="#exampleModal">
+             <button class="upload-btn"><i class="fas fa-cloud-upload-alt"></i></button>
+             </div>
+
+ 
+</div>
+
    
 </main>
 
@@ -238,5 +302,30 @@
             $('#search-box').toggle();
         });
     </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </body>
 </html>
