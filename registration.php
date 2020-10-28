@@ -126,7 +126,7 @@ $user_confirm_password = $_POST['user_confirm_password'];
         <div class="container">
             <div class="reg">
                 <div class="logo">
-                    <img src="assets/img/logo/ultra-Shots-black.png" alt="">
+                <a href="log-in.php"><img src="assets/img/logo/ultra-Shots-black.png" alt=""></a>
                 </div>
                
                     <form action="<?php $_SERVER['PHP_SELF']?>" method = "POST" enctype='multipart/form-data'>

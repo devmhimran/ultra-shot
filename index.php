@@ -54,14 +54,29 @@
 
     <div class="container">
         <div class="row">
+            <?php
+
+            $all_post = "SELECT * FROM posts ";
+            $all_post_data = $conn -> query($all_post);
+            // $post_data = $data -> fetch_assoc()
+                // $f_data = $data -> fetch_assoc();
+
+            while($all_f_data = $all_post_data -> fetch_assoc()): ?>
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-image">
-                        <img src="assets/img/pics/1.jpg">
+                        <img src="assets/img/user_post/<?php echo $all_f_data['post_photo'];  ?>">
                     </div>
                     <div class="card-detail">
-                        <img src="assets/img/user_img/untitled-1.jpg">
-                        <a href="#"><p class="user-name">Mahmud Hasan</p></a>
+                        <?php 
+                            $uploader_id = $all_f_data['user_id'];
+                            $uploader_post = "SELECT * FROM user_data WHERE id= '$uploader_id' ";
+                            $all_uploader_post_data = $conn -> query($uploader_post);
+
+
+                        ?>
+                        <img src="assets/img/user_img/<?php echo $all_uploader_post_data['user_photo'];?>">
+                        <a href="#"><p class="user-name"><?php echo $all_uploader_post_data['user1_name'];?></p></a>
                         <div class="react-num-cnt float-right">
                             <a class="react-icon" href="#"><i class="fas fa-heart"></i></a>
                             <p class="react-num text-muted ">20</p>
@@ -71,6 +86,7 @@
                     </div>
                 </div>
             </div>
+        <?php endwhile; ?>
 <!-- ===== 1st card ===== -->
 
 
@@ -80,7 +96,7 @@
                         <img src="assets/img/pics/1.jpg">
                     </div>
                     <div class="card-detail">
-                        <img src="assets/img/user_img/untitled-1.jpg">
+                        <img src="assets/img/user_img/<?php echo $_SESSION['user_photo'];?>">
                         <a href="#"><p class="user-name">Mahmud Hasan</p></a>
                         <div class="react-num-cnt float-right">
                             <a class="react-icon" href="#"><i class="fas fa-heart"></i></a>

@@ -124,9 +124,9 @@ if(isset($_POST['upload_photo'])){
             
 
             $user_id = $_SESSION['id'];
-            $sql_post = "SELECT * FROM user_data WHERE user_id ='$user_id'";
+            $sql_post = "SELECT * FROM posts WHERE user_id ='$user_id'";
             $data = $conn -> query($sql_post);
-            // $f_data = $data -> fetch_assoc()
+            // $post_data = $data -> fetch_assoc()
                 // $f_data = $data -> fetch_assoc();
                 
             
@@ -139,19 +139,19 @@ if(isset($_POST['upload_photo'])){
                      
                      
                     
-                     while($f_data = $data -> fetch_assoc()):
+                     while($post_data = $data -> fetch_assoc()):
                      
                     ?>
 
                      <div class="col-md-4">
                         <div class="card">
                             <div class="card-image">
-                                <img src="assets/img/user_post/<?php echo $f_data['post_photo'];  ?>">
+                                <img src="assets/img/user_post/<?php echo $post_data['post_photo'];  ?>">
                             </div>
                         </div>
                     </div>
                      <?php endwhile; ?>
-                     
+                    
 
                      
                 </div>

@@ -4,9 +4,8 @@
     include 'db/function.php';
 
 if (isset($_POST['log_in'])) {
-   $username = $_POST['username'];
-   $user_password = $_POST['user_password'];
-
+    $username = $_POST['username'];
+    $user_password = $_POST['user_pass'];
   if(empty($username)){
     $username_valid = "<p class='invailed-msg'>Username/Email Required</p>";
    }
@@ -18,29 +17,28 @@ if (isset($_POST['log_in'])) {
     $valid =  "<p class='invailed-msg'>All fields are required<button style='color:red;' class='close' data-dissmiss='alert'>&times;</button></p>";
 
    }else{
-
     $sql_username = "SELECT * FROM user_data WHERE user_username ='$username'|| user_email ='$username'";
     $data = $conn -> query($sql_username);
     $f_data = $data -> fetch_assoc();
     if( $data -> num_rows == 1) {
         
-        if(password_verify($user_password, $f_data['password'] ) == false){
+        if(password_verify($user_password, $f_data['user_password'] ) == false){
 
             session_start();
             $_SESSION['id'] = $f_data['id'];
             $_SESSION['user1_name'] = $f_data['user1_name'];
-            $_SESSION['user_username'] = $f_data['user_username'];
-            $_SESSION['user_email'] = $f_data['email'];
-            $_SESSION['user_address'] = $f_data['user_address'];
+            $_SESSION['user_email'] = $f_data['user_email'];
             $_SESSION['user_bio'] = $f_data['user_bio'];
+            $_SESSION['user_username'] = $f_data['user_username'];
             $_SESSION['user_photo'] = $f_data['user_photo'];
+            
             header("location:profile.php");
         }else{
-            $valid =  "<p class='invailed-msg'>Wrong Password<button style='color:red;' class='close' data-dissmiss='alert'>&times;</button></p>";
+            $valid =  "<p style ='color:#CC3C39;'>Wrong Password<button style='color:red;' class='close' data-dissmiss='alert'>&times;</button></p>";
         }
 
     }else{
-        $valid =  "<p class='invailed-msg'>wrong username<button style='color:red;' class='close' data-dissmiss='alert'>&times;</button></p>";
+        $valid =  "<p style ='color:#CC3C39;'>wrong username<button style='color:red;' class='close' data-dissmiss='alert'>&times;</button></p>";
     }
    
 
@@ -67,7 +65,7 @@ if (isset($_POST['log_in'])) {
         <div class="container">
             <div class="log-in">
                 <div class="logo">
-                    <img src="assets/img/logo/ultra-Shots-black.png" alt="">
+                    <a href="log-in.php"><img src="assets/img/logo/ultra-Shots-black.png" alt=""></a>
                 </div>
                
                     <form action="<?php $_SERVER['PHP_SELF']?>" method = "POST">
@@ -103,7 +101,7 @@ if (isset($_POST['log_in'])) {
                                 <div class="user-input">
                                     <div class="form-group">
                                         <!-- <label for="">Password</label> -->
-                                        <input  class="" type="password" placeholder="password" name="user_password">
+                                        <input  class="" type="password" placeholder="password" name="user_pass">
                                     </div>
                                     <?php 
 
@@ -124,7 +122,7 @@ if (isset($_POST['log_in'])) {
                         </div>
                         <div class="reg-link">
                             <div class="reg-text">
-                                <p>Don't have an account? <a href="">Sign up here!</a></p>
+                                <p>Don't have an account? <a href="registration.php">Sign up here!</a></p>
                             </div>
                         </div> 
                        
