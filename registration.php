@@ -13,7 +13,7 @@ $user_bio              = $_POST['user_bio'];
 $user_password         = $_POST['user_password'];
 $user_confirm_password = $_POST['user_confirm_password'];
     // $user_photo            = $_POST['user_photo'];
-    $password_hash         = password_hash($user_password, PASSWORD_DEFAULT);
+    // $password_hash         = password_hash($user_password, PASSWORD_DEFAULT);
                 
      // username check
     // -------------------------------
@@ -70,7 +70,7 @@ $user_confirm_password = $_POST['user_confirm_password'];
 
      // form-validation
      // -------------------------------
-     if(empty($user_name )  || empty( $user_username) || empty($user_email) || empty($user_address) || empty($user_bio) || empty($password_hash)){
+     if(empty($user_name )  || empty( $user_username) || empty($user_email) || empty($user_address) || empty($user_bio) || empty($user_password)){
          $valid[] =  "<p class='alert alert-danger'>All fields are required<button class='close' data-dissmiss='alert'>&times;</button></p>";
          }elseif ($unique_username_check == false) {
                 $valid[] =  "<p class='alert alert-warning'>Couldn't Sign In !<button class='close' data-dissmiss='alert'>&times;</button></p>";
@@ -91,7 +91,7 @@ $user_confirm_password = $_POST['user_confirm_password'];
 
             if ( $data['status'] == 'yes' ) {
 
-                 $sql = " INSERT INTO user_data ( user1_name ,user_username,user_email,user_address,user_bio,user_password,user_photo) values ('$user_name ','$user_username','$user_email','$user_address','$user_bio','$password_hash','$photo_data')";
+                 $sql = " INSERT INTO user_data ( user1_name ,user_username,user_email,user_address,user_bio,user_password,user_photo) values ('$user_name ','$user_username','$user_email','$user_address','$user_bio','$user_password','$photo_data')";
                  $conn -> query($sql);
                 set_msg('Successfully Sign Up');
 
@@ -248,6 +248,10 @@ $user_confirm_password = $_POST['user_confirm_password'];
                                 
                                 <input  class="login-btn login-btn1" type="submit" value="Sign in" name="submit">
                                 <!-- <button>Log In</button> -->
+                                <div class="reg-link">
+                            <div class="reg-text mt-3">
+                                <p>Let's <a href="log-in.php">Sign in</a></p>
+                            </d
                             </div>
                             
                         </div>

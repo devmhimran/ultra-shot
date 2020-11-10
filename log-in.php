@@ -6,6 +6,9 @@
 if (isset($_POST['log_in'])) {
     $username = $_POST['username'];
     $user_password = $_POST['user_pass'];
+
+
+
   if(empty($username)){
     $username_valid = "<p class='invailed-msg'>Username/Email Required</p>";
    }

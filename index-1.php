@@ -46,3 +46,27 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+<div class="col-md-4">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="assets/img/pics/1.jpg">
+                    </div>
+                    <div class="card-detail">
+                        <img src="assets/img/user_img/<?php echo $_SESSION['user_photo'];?>">
+                        <a href="#"><p class="user-name">Mahmud Hasan</p></a>
+                        <div class="react-num-cnt float-right">
+                            <a class="react-icon" href="#"><i class="fas fa-heart"></i></a>
+                            <p class="react-num text-muted ">20</p>
+                        </div>
+                   
+
+                    </div>
+                </div>
+            </div>

@@ -87,11 +87,16 @@ if(isset($_POST['upload_photo'])){
             </div>
             <div class="nav-items">               
                     <input id="search-box" class="search-box" type="text" placeholder="Search">
-                    <a id="search" class="search-icon" href="#"><i  class="fas fa-search"></i></a>              
-                    <a class="notification" href="#"><i class="fas fa-bell"></i></a>
+                    <!-- <a id="search" class="search-icon" href="#"><i  class="fas fa-search"></i></a>               -->
                     <a href="profile.php"><img class="profile-img" src="assets/img/user_img/<?php echo $_SESSION['user_photo'];?>"></a>
                     <a class="logout" id="dropdown" href="?logout=user-logout"><i class="fas fa-sign-out-alt"></i></a>
-                    <a class="setting" href="#"><i class="fas fa-cog"></i></a>        
+                    <a class="setting dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><i class="fas fa-cog"></i></a>   
+                    <div class="dropdown">
+  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <a href="update.php?id=<?php echo $_SESSION['id'] ;?>" class="dropdown-item" type="button">Update Account</a>
+    <a href="profile-delete.php?id=<?php echo $_SESSION['id'] ;?>" class="dropdown-item" type="button">Delete Account</a>
+  </div>
+</div>     
             </div>
         </div>
     </div>
@@ -124,7 +129,7 @@ if(isset($_POST['upload_photo'])){
             
 
             $user_id = $_SESSION['id'];
-            $sql_post = "SELECT * FROM posts WHERE user_id ='$user_id'";
+            $sql_post = "SELECT * FROM posts WHERE user_id ='$user_id' ORDER BY posts.user_id DESC";
             $data = $conn -> query($sql_post);
             // $post_data = $data -> fetch_assoc()
                 // $f_data = $data -> fetch_assoc();
@@ -142,22 +147,22 @@ if(isset($_POST['upload_photo'])){
                      while($post_data = $data -> fetch_assoc()):
                      
                     ?>
-
-                     <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="assets/img/user_post/<?php echo $post_data['post_photo'];  ?>">
-                            </div>
-                        </div>
-                    </div>
+                    <div class="col-md-4">
+                                           <div class="card">
+                                               <div class="card-image">
+                                                   <img src="assets/img/user_post/<?php echo $post_data['post_photo'];  ?>">
+                                               </div>
+                                               <a class="logout mt-1 mb-1 w-25" href="delete.php?id=<?php echo $post_data['id'];  ?>"><i class="far fa-trash-alt"></i></a>
+                                               </div>
+                                           </div>
                      <?php endwhile; ?>
-                    
+                 
 
                      
                 </div>
                        
     
-            </div>
+          
             
 
 

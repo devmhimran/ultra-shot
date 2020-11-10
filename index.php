@@ -41,8 +41,8 @@
             </div>
             <div class="nav-items">               
                     <input id="search-box" class="search-box" type="text" placeholder="Search">
-                    <a id="search" class="search-icon" href="#"><i  class="fas fa-search"></i></a>              
-                    <a class="notification" href="#"><i class="fas fa-bell"></i></a>
+                    <!-- <a id="search" class="search-icon" href="#"><i  class="fas fa-search"></i></a>               -->
+                    <!-- <a class="notification" href="#"><i class="fas fa-bell"></i></a> -->
                     <a href="profile.php"><img class="profile-img" src="assets/img/user_img/<?php echo $_SESSION['user_photo'];?>"></a>
                     <a class="logout" id="dropdown" href="?logout=user-logout"><i class="fas fa-sign-out-alt"></i></a>
                     <a class="setting" href="#"><i class="fas fa-cog"></i></a>        
@@ -56,140 +56,39 @@
         <div class="row">
             <?php
 
-            $all_post = "SELECT * FROM posts ";
+            $all_post = "SELECT * FROM posts LEFT JOIN user_data ON posts.user_id = user_data.id ORDER BY posts.user_id DESC";
             $all_post_data = $conn -> query($all_post);
             // $post_data = $data -> fetch_assoc()
                 // $f_data = $data -> fetch_assoc();
 
             while($all_f_data = $all_post_data -> fetch_assoc()): ?>
+
+
+
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-image">
                         <img src="assets/img/user_post/<?php echo $all_f_data['post_photo'];  ?>">
                     </div>
                     <div class="card-detail">
-                        <?php 
-                            $uploader_id = $all_f_data['user_id'];
-                            $uploader_post = "SELECT * FROM user_data WHERE id= '$uploader_id' ";
-                            $all_uploader_post_data = $conn -> query($uploader_post);
-
-
-                        ?>
-                        <img src="assets/img/user_img/<?php echo $all_uploader_post_data['user_photo'];?>">
-                        <a href="#"><p class="user-name"><?php echo $all_uploader_post_data['user1_name'];?></p></a>
-                        <div class="react-num-cnt float-right">
+                        <img src="assets/img/user_img/<?php echo $all_f_data['user_photo'];  ?>">
+                        <a href="user.php?id=<?php echo $all_f_data['id']; ?>"><p class="user-name"><?php echo $all_f_data['user1_name']; ?></p></a>
+                       <!--  <div class="react-num-cnt float-right">
                             <a class="react-icon" href="#"><i class="fas fa-heart"></i></a>
                             <p class="react-num text-muted ">20</p>
-                        </div>
+                        </div> -->
                    
-
+                    </div>
                     </div>
                 </div>
-            </div>
+            
+
+
+
+
         <?php endwhile; ?>
-<!-- ===== 1st card ===== -->
 
-
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="assets/img/pics/1.jpg">
-                    </div>
-                    <div class="card-detail">
-                        <img src="assets/img/user_img/<?php echo $_SESSION['user_photo'];?>">
-                        <a href="#"><p class="user-name">Mahmud Hasan</p></a>
-                        <div class="react-num-cnt float-right">
-                            <a class="react-icon" href="#"><i class="fas fa-heart"></i></a>
-                            <p class="react-num text-muted ">20</p>
-                        </div>
-                   
-
-                    </div>
-                </div>
-            </div>
-<!-- ===== 2nd card ===== -->
-
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="assets/img/pics/1.jpg">
-                    </div>
-                    <div class="card-detail">
-                        <img src="assets/img/user_img/untitled-1.jpg">
-                        <a href="#"><p class="user-name">Mahmud Hasan</p></a>
-                        <div class="react-num-cnt float-right">
-                            <a class="react-icon" href="#"><i class="fas fa-heart"></i></a>
-                            <p class="react-num text-muted ">20</p>
-                        </div>
-                   
-
-                    </div>
-                </div>
-            </div>
-<!-- ===== 3rd card ===== -->
-                   
-
-        </div>
-                <!-- ===== 1ST ROW ===== -->
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="assets/img/pics/1.jpg">
-                            </div>
-                            <div class="card-detail">
-                                <img src="assets/img/user_img/untitled-1.jpg">
-                                <a href="#"><p class="user-name">Mahmud Hasan</p></a>
-                                <div class="react-num-cnt float-right">
-                                    <a class="react-icon" href="#"><i class="fas fa-heart"></i></a>
-                                    <p class="react-num text-muted ">20</p>
-                                </div>
-                           
-        
-                            </div>
-                        </div>
-                    </div>
-        <!-- ===== 1st card ===== -->
-        
-        
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="assets/img/pics/1.jpg">
-                            </div>
-                            <div class="card-detail">
-                                <img src="assets/img/user_img/untitled-1.jpg">
-                                <a href="#"><p class="user-name">Mahmud Hasan</p></a>
-                                <div class="react-num-cnt float-right">
-                                    <a class="react-icon" href="#"><i class="fas fa-heart"></i></a>
-                                    <p class="react-num text-muted ">20</p>
-                                </div>
-                           
-        
-                            </div>
-                        </div>
-                    </div>
-        <!-- ===== 2nd card ===== -->
-        
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="assets/img/pics/1.jpg">
-                            </div>
-                            <div class="card-detail">
-                                <img src="assets/img/user_img/untitled-1.jpg">
-                                <a href="#"><p class="user-name">Mahmud Hasan</p></a>
-                                <div class="react-num-cnt float-right">
-                                    <a class="react-icon" href="#"><i class="fas fa-heart"></i></a>
-                                    <p class="react-num text-muted ">20</p>
-                                </div>
-                           
-        
-                            </div>
-                        </div>
-                    </div>
-        <!-- ===== 3rd card ===== -->
-                           
+           </div>                
         
                 </div>
                 <!-- ===== 2ND ROW ===== -->

@@ -77,7 +77,7 @@
 .card{
 
     width: 320px;
-    height: 290px ;
+    height: auto ;
     border-radius: 5px;
 	border: none;
 	margin: 10px 10px;
@@ -95,7 +95,8 @@
 
 }
 .card .card-image img{
-	width: 100%;
+    width: 100%;
+    height: auto;
     border-radius: /*15px 15px 0px*/ 5px;
     object-fit: cover;
 }
